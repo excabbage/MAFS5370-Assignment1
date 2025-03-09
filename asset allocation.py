@@ -26,20 +26,22 @@ class State_Action:
 
     def hash(self) -> int :
         '''
-        As t is not greater than 99,
+        As t is between 0 and 10,
         so we map the state-action pair into number:
-            hash = wealth , time , 000.
+            hash = wealth * 11 + time.
+        and we can recover it by
+            time = hash % 11,
+            wealth = (hash - time)/11
         '''
-        if self.wealth >= 0 :
-            return self.wealth * 1000000 + self.time * 1000
-        else :
-            return self.wealth * 1000000 - self.time * 1000
+        return self.wealth * 11 + self.time
     
     def hash_a(self) -> int :
         '''
-        As action take value in 0-100, not greater than 999,
-        so
-            action_hash = wealth , time , action = hash + action.
+        As action take value in 0-100, 
+        so we make use of hash function
+            hash_a = hash * 101 + action.
+        and we can recover it by
+            action = hash_a % 101,
         '''
         if self.wealth >= 0 :
             return self.wealth * 1000000 + self.time * 1000 + self.action
