@@ -55,6 +55,16 @@ The hash_a function one-to-one maps the state action pair into integer,
 
 $$hash_a(t,W_t,a_t) = hash(t,W_t) * 101 + a_t$$
 
-Then I specify the riskfree interest rate, $r=0.05$. And distribution of risky asset return, $Y_t=0.06$, prob= $0.6$, and $0.04$, prob= $0.4$
+Then I specify the riskfree interest rate, $r=0.05$. And distribution of risky asset return, $Y_t=0.06$, prob= $0.6$, and $0.04$, prob= $0.4$. The reward of each action is 
+
+$$R_t=0, t \in [1,9]$$
+$$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}),t=10$$
+
+where $U(W_t)$ is Utility function.
 
 ## 3 Part II: Define TD(0) method
+At state $s_t$, 
+
+
+$$Q^{new}(S_t,S_t) = Q^{old}(S_t,A_t) + \alpha * (R_{t+1} +\gamma *Q^{old}(S_{t+1},A_{t+1}) - Q^{old}(S_t,A_t))$$
+
