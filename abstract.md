@@ -7,8 +7,8 @@ Abstract: The case is discrete-Time asset allocation between one rikfree asset a
 ### 1.1 The defination of reward
 The reward is the Utility of Consumption of Money extracted from allocation. In this case, one don't extract any money until the end of time, and extract all the money at the end,
 
-$$R_t=0, t \in [1,9]$$
-$$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}),t=10$$
+$$R_t=0 \quad, t \in [1,9]$$
+$$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}) \quad,t=10$$
 
 where $U(W_t)$ is Utility function.
 
@@ -34,7 +34,7 @@ Because it is a constant under all the past condition, so one can take expectati
 
 $$=E[ E[ \mathbb{1}_{W_t * (1+(1-A_t )*r+A_t * Y_t )} |F_t ] |s_t,A_t  ]$$
 
-$$=E[ E[ \mathbb{1}_{W_t * (1++(1-A_t )*rA_t * Y_t )} |s_t,A_t ] |F_t ]$$
+$$=E[ E[ \mathbb{1}_{W_t * (1+(1-A_t )*r+A_t * Y_t )} |s_t,A_t ] |F_t ]$$
 
 Admit that $\{ Y_t \}$ is i.i.d., so the inside expectation is determined without randomness, one can remove the outside expectation
 
@@ -47,18 +47,18 @@ $$=P(s_{t+1},R_{t+1}|s_t,A_t)$$
 ## 2 Part I: Define the environment model
 To simplify the case, I discretize the wealth and action. $W_t$ is roud into integer. Action is integer between 0 and 100. (i.e. $a_t=24$ means 24% of wealth allocated into riksy asset at time t.)
 
-Define the hash function. It one-to-one maps the state-- time and wealth-- into integer by
+Define the hash function. It maps the state-- time and wealth-- into integer one-to-one by
 
-$$hash(t,W_t) = W_t * 11 + t$$
+$$hash(t,W_t) = W_t * 11 + t \quad, t\in [0,10]$$
 
-The hash_a function one-to-one maps the state action pair into integer,
+Define the hash_a function. It maps the state action pairs into integer one-to-one by
 
-$$hash_a(t,W_t,a_t) = hash(t,W_t) * 101 + a_t$$
+$$hash_a(t,W_t,a_t) = hash(t,W_t) * 101 + a_t \quad,a_t \in [0,100]$$
 
-Then I specify the riskfree interest rate, $r=0.05$. And distribution of risky asset return, $Y_t=0.06$, prob= $0.6$, and $0.04$, prob= $0.4$. The reward of each action is 
+Then I specify the riskfree interest rate, $r=0.05$. And distribution of risky asset return is $Y_t=0.06$, prob= $0.6$, and $0.04$, prob= $0.4$. The reward of each action is 
 
-$$R_t=0, t \in [1,9]$$
-$$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}),t=10$$
+$$R_t=0 \quad, t \in [1,9]$$
+$$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}) \quad,t=10$$
 
 where $U(W_t)$ is Utility function.
 
