@@ -55,4 +55,6 @@ The hash_a function one-to-one maps the state action pair into integer,
 
 $$hash_a(t,W_t,a_t) = hash(t,W_t) * 101 + a_t$$
 
+Then I specify the riskfree interest rate, $r=0.05$. And distribution of risky asset return, $Y_t=0.06$, prob= $0.6$, and $0.04$, prob= $0.4$
+
 ## 3 Part II: Define TD(0) method
