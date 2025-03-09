@@ -43,10 +43,7 @@ class State_Action:
         and we can recover it by
             action = hash_a % 101,
         '''
-        if self.wealth >= 0 :
-            return self.wealth * 1000000 + self.time * 1000 + self.action
-        else :
-            return self.wealth * 1000000 - self.time * 1000 - self.action
+        return self.hash() * 101 + self.action
     
     def is_end(self, T:int) -> bool : #parameter T is the terminal time
          if self.time < T :
