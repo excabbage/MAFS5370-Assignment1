@@ -63,8 +63,22 @@ $$R_t=U(W_t)=100(1-e^{-\frac{W_t}{100}}) \quad,t=10$$
 where $U(W_t)$ is Utility function.
 
 ## 3 Part II: Define TD(0) method
-At state $s_t$, 
+Initialize $A_t = 50, \forall s_t$, and $Q(S_t,A_t) = 0, \forall S_t,A_t$.
 
+Repeat(for each episode):
 
-$$Q^{new}(S_t,S_t) = Q^{old}(S_t,A_t) + \alpha * (R_{t+1} +\gamma *Q^{old}(S_{t+1},A_{t+1}) - Q^{old}(S_t,A_t))$$
+-Initialize $S_t=\\{ t=0,W_t=100\\} $
 
+--Repeat (for each step of episode):
+
+--Choose $A_t$ from $S_t$ using epsilon-greedy policy, I set epsilon be 0.2.
+
+--Take action $A_t$, observe reward $R_{t+1}$ and new state $S_{t+1}$
+
+--back up the action value Q, where $\alpha = 0.9$ and $\gamma = 0.9$
+
+$$Q^{new}(S_t,A_t) = Q^{old}(S_t,A_t) + \alpha * (R_{t+1} +\gamma *\max\limits_{a}Q^{old}(S_{t+1},a) - Q^{old}(S_t,A_t))$$
+
+--update the State: $S_t=S_{t+1}$
+
+-until $S_t$ is terminal
