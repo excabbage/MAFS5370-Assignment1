@@ -43,3 +43,16 @@ $$=E(\mathbb{1}_{W_t * (1+A_t * Y_t +(1-A_t )*r)} |s_t,A_t )$$
 Backward similarly,
 
 $$=P(s_{t+1},R_{t+1}|s_t,A_t)$$
+
+## 2 Part I: Define the environment model
+To simplify the case, I discretize the wealth and action. $W_t$ is roud into integer. Action is integer between 0 and 100. (i.e. $a_t=24$ means 24% of wealth allocated into riksy asset at time t.)
+
+The hash function one-to-one maps the state, time and wealth, into integer,
+
+$$hash(t,W_t) = W_t * 11 + t$$
+
+The hash_a function one-to-one maps the state action pair into integer,
+
+$$hash_a(t,W_t,a_t) = hash(t,W_t) * 101 + a_t$$
+
+## 3 Part II: Define TD(0) method
