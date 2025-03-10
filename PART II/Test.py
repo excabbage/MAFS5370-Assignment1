@@ -54,14 +54,14 @@ test1.episode()
 print(len(test1.all_Q),len(test1.policy)) #result should be 10, 10
 print(test1.all_Q) # And only last all_Q is non zero.
 
+
 ####Integration Testing:
 '''
 test the TD0 working well.
-I use normal distribution of risky return to test the output policy.
-As referred in text book 'Fouundatoins of Reinforcement Learning with Applications in Finance', 
-the policy is independent to wealth:
-    xt = (mu - r)/( sigma^2 * 100 * (1+r)^(T-t-1) ) 
-which are all closed to 0
-From the test we can see the median of the xt with respect to wealth are close to zero, and 3/4 quantile are about 10%
+I use a special case to test: the risky asset return is always higher than riskfree interest rate.
+Obviously, there is an arbitrage opportunity, and thus optimal stratagy is 100% of capital allocated into risky asset.
+I will set risky asset return Y= 0.08, prob= 0.6, and 0.06, prob= 0.4. Run the episode function until 10000 times or until the summation of change of Q is less than 1e-5.
+Each above operation will give me a policy, and I try 200 times of above operation, so that I get 200 policy for this case.
+For each state, the average of these policy should be 100.
 '''
-            
+
