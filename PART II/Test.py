@@ -17,7 +17,7 @@ Test TD0 class:
 3.test backup function: Using the above test data,
     If backup( 100*1111+4*101+30 , 100*1111+6*101+80 , 0 ), The value of all_Q[100*1111+4*101+30] will change from 20 into 29.7, which is 20 + 1*[0 + 0.99*30 - 20]
     If backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ), The value of all_Q[100*1111+4*101+30] will change from 20 into 10, which is 20 + 1*[10 + 0.99*0 - 20]
-4.test episode function:
+4.test episode function: If I run episode functio once, the length of all_Q, policy, should be 10 as we dynamically storage the visited nodes. And only last all_Q is non zero.
 '''
 #1:The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
 test = TD0()
@@ -48,7 +48,11 @@ test.all_Q[100*1111+4*101+30] = 20 # reset
 change = test.backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ) # second situation
 print(change, test.all_Q[100*1111+4*101+30]) #result should be 10, 10
 
-
+#4: 
+test1 = TD0()
+test1.episode()
+print(len(test1.all_Q),len(test1.policy)) #result should be 10, 10
+print(test1.all_Q) # And only last all_Q is non zero.
 
 ####Integration Testing:
 '''
