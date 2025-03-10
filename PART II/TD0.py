@@ -59,13 +59,13 @@ class TD0:
     
     def episode(self) -> float:
         '''
-        First generate the initial state, get its action, and increase its visited.
+        First generate the initial state, get its action.
         Then loop untill terminal state:
+            update visited of old_pair
             update greedy policy,
-            
-            get new state and its action, and the reward,
-            backup,
-            
+            get new state and the reward,
+            Q-learning method backup,
+            use epsilon greedy policy to get new state's action
             update the state infomation.
         Return summation of all change of Q(old_pair) after hole episode.
         '''
@@ -75,10 +75,11 @@ class TD0:
         old_pair = State_Action()
         ### get action for old state using epsilon greedy method
         old_pair.action = self.get_action(old_pair.hash())
-        ### update the visited value for state-action pair
-        self.visited[old_pair.hash_a()] = 1 + self.visited.get(old_pair.hash_a(),0)
         
         while not old_pair.is_end(self.player.T) :    
+            ### update the visited value for state-action pair
+            self.visited[old_pair.hash_a()] = 1 + self.visited.get(old_pair.hash_a(),0)
+            
             ### use self.all_Q to update the greedy policy for old state
             self.policy_update(old_pair.hash())
             
@@ -100,8 +101,7 @@ class TD0:
             ### After Q-learning backup, I now get the actual action of new state, using epsilon greedy method.
             new_pair.action = self.get_action(new_pair.hash())
             
-            ### update the old_state, and visited times
+            ### update the old_state
             old_pair = new_pair
-            self.visited[old_pair.hash_a()] = 1 + self.visited.get(old_pair.hash_a(),0)
         
         return change #Return summation of all change of Q(old_pair) after hole episode.
