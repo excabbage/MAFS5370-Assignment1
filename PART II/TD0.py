@@ -12,7 +12,6 @@ class TD0:
     9.backup function: TD0 back up
     10.episode function: Do a trail, use TD0 method to update Q(s,a) and greedy policy, return the total change of Q
     '''
-    
     all_Q = dict() 
     visited = dict() 
     policy = dict() 
