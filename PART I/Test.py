@@ -57,18 +57,45 @@ print(test.is_end(4),test.is_end(10),test.is_end(0))
 
 '''
 Test environment
+1.test initial funcion: If print(test.a,test.b,test.p,test.r,test.T), result should be 0.06,0.04,0.6,0.05,10 repsectively
+2.test Y function: If run Y function 1000 timss and storage in the 'result' variable, 'reslut' shoulg consist of roughly 600 times of value 0.06, roughly 400 times of value 0.04. And there is no other value.
+3.test next_state function: If run next_state function 1000 times with imput parameter State_Action(4,250). The result should be 60% probability of State_Action(5,264), 40% probability of State_Action(5,261).
+
 '''
 
+#1:result should be 0.06,0.04,0.6,0.05,10 repsectively
+test = environment()
+print(test.a,test.b,test.p,test.r,test.T)
+
+#2:reslut shoulg consist of roughly 600 times of value 0.06, roughly 400 times of value 0.04. And there is no other value.
+import pandas as pd
+result = np.zeros(1000)
+for i in range(0,1000):
+  result[i] = test.Y()
+pd.value_counts(result)
+
+#3:The result should be 60% probability of State_Action(5,264)--hash value is 2909, hash_a value is 293859
+#40% probability of State_Action(5,261)--hahs value is 2876, hash_a value is 290526
+result_t = np.zeros(1000)
+result_wealth = np.zeros(1000)
+result_hash = np.zeros(1000)
+result_hash_a = np.zeros(1000)
+for i in range(0,1000):
+  result = test.next_state(State_Action(4,250))
+  result_t[i] = result.time
+  result_wealth[i] = result.wealth
+  result_hash[i] = result.hash()
+  result_hash_a[i] = result.hash_a()
+pd.value_counts(result_t)
+pd.value_counts(result_wealth)
+pd.value_counts(result_hash)
+pd.value_counts(result_hash_a)
 
 
+####Integration Testing
+'''
 
-
-
-
-
-
-
-##Integration Testing: test State_Action and play class working well.
+'''
 test=State_Action(1,200)
 #Its value should be time=1, wealth=200, visited=0, value=0
 test.action = 20
