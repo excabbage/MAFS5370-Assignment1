@@ -60,8 +60,131 @@ print(test1.all_Q) # And only last all_Q is non zero.
 test the TD0 working well.
 I use a special case to test: the risky asset return is always higher than riskfree interest rate.
 Obviously, there is an arbitrage opportunity, and thus optimal stratagy is 100% of capital allocated into risky asset.
-I will set risky asset return Y= 0.08, prob= 0.6, and 0.06, prob= 0.4. Run the episode function until 10000 times or until the summation of change of Q is less than 1e-5.
-Each above operation will give me a policy, and I try 200 times of above operation, so that I get 200 policy for this case.
-For each state, the average of these policy should be 100.
+I will set risky asset return Y= 0.08, prob= 0.6, and 0.06, prob= 0.4. Run the episode function until 1000000 times or until the summation of change of Q is less than 1e-5.
 '''
-
+test = TD0()
+for i in range(0,1000000):
+    change = test.episode()
+    if change < 1e-5 :
+        break
+p = test.policy #get the policy
+# view the result of policy at time 0
+x0 = []
+w0 = []
+for key in p:
+    if key%11 == 0 :
+        x0=np.append(x0,p[key])
+        w0=np.append(w0,(key-key%11)/11)
+plt.plot(w0,x0,'o')
+plt.title('Policy at time 0')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 1
+x1 = []
+w1 = []
+for key in p:
+    if key%11 == 1 :
+        x1=np.append(x1,p[key])
+        w1=np.append(w1,(key-key%11)/11)
+plt.plot(w1,x1,'o')
+plt.title('Policy at time 1')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 2
+x2 = []
+w2 = []
+for key in p:
+    if key%11 == 2 :
+        x2=np.append(x2,p[key])
+        w2=np.append(w2,(key-key%11)/11)
+plt.plot(w2,x2,'o')
+plt.title('Policy at time 2')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 3
+x3 = []
+w3 = []
+for key in p:
+    if key%11 == 3 :
+        x3=np.append(x3,p[key])
+        w3=np.append(w3,(key-key%11)/11)
+plt.plot(w3,x3,'o')
+plt.title('Policy at time 3')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 4
+x4 = []
+w4 = []
+for key in p:
+    if key%11 == 4 :
+        x4=np.append(x4,p[key])
+        w4=np.append(w4,(key-key%11)/11)
+plt.plot(w4,x4,'o')
+plt.title('Policy at time 4')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 5
+x5 = []
+w5 = []
+for key in p:
+    if key%11 == 5 :
+        x5=np.append(x5,p[key])
+        w5=np.append(w5,(key-key%11)/11)
+plt.plot(w5,x5,'o')
+plt.title('Policy at time 5')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 6
+x6 = []
+w6 = []
+for key in p:
+    if key%11 == 6 :
+        x6=np.append(x6,p[key])
+        w6=np.append(w6,(key-key%11)/11)
+plt.plot(w6,x6,'o')
+plt.title('Policy at time 6')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 7
+x7 = []
+w7 = []
+for key in p:
+    if key%11 == 7 :
+        x7=np.append(x7,p[key])
+        w7=np.append(w7,(key-key%11)/11)
+plt.plot(w7,x7,'o')
+plt.title('Policy at time 7')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 8
+x8 = []
+w8 = []
+for key in p:
+    if key%11 == 8 :
+        x8=np.append(x8,p[key])
+        w8=np.append(w8,(key-key%11)/11)
+plt.plot(w8,x8,'o')
+plt.title('Policy at time 8')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
+# view the result of policy at time 9
+x9 = []
+w9 = []
+for key in p:
+    if key%11 == 9 :
+        x9=np.append(x9,p[key])
+        w9=np.append(w9,(key-key%11)/11)
+plt.plot(w9,x9,'o')
+plt.title('Policy at time 9')
+plt.xlabel('wealth')
+plt.ylabel('action %')
+plt.ylim((0,101))
