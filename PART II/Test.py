@@ -42,11 +42,11 @@ for i in range(0,1000):
 plt.hist(result) #The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
 
 #3:
-test.backup( 100*1111+4*101+30 , 100*1111+6*101+80 , 0 ) # first situation
-print(test.all_Q[100*1111+4*101+30]) #result should be 29.7
+change = test.backup( 100*1111+4*101+30 , 100*1111+6*101+80 , 0 ) # first situation
+print(change, test.all_Q[100*1111+4*101+30]) #result should be 9.7, 29.7
 test.all_Q[100*1111+4*101+30] = 20 # reset
-test.backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ) # second situation
-print(test.all_Q[100*1111+4*101+30]) #result should be 10
+change = test.backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ) # second situation
+print(change, test.all_Q[100*1111+4*101+30]) #result should be 10, 10
 
 
 
