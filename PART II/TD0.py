@@ -1,9 +1,9 @@
 class TD0:
     '''
     The reinforcing learning algorithm, which contains:
-    1.all_Q: #storage all the action values of visited state-action pairs. Index is hash_a() number
-    2.visited: #storage the visited time for each pairs during the trail. It is used to caculate the step-size for each pairs.
-    3.policy : #storage the greedy policy. Index is state hash() number
+    1.all_Q: #dynamically storage all the action values of visited state-action pairs. Index is hash_a() number
+    2.visited: #dynamically storage the visited time for each pairs during the trail. It is used to caculate the step-size for each pairs.
+    3.policy : #dynamically storage the greedy policy. Index is state hash() number
     4.player: the class environment(), telling TD0 algorithm the environment.
     5.epsilon: the parameter of epsilon greedy policy
     6.gamma: the paramter of discount return Gt = Rt+1 + gamma * Rt+2 + gamma^2 * Rt+3 + ....
