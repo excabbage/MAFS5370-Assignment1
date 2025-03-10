@@ -1,17 +1,38 @@
 ####Unit Testing
 '''
-1.Test policy update
+Test TD0 class:
+1.test policy_update function: Because policy and all_Q storage the data dynamically, I test 4 situation. 
+    There is neither policy data nor all_Q data of state: time=1, wealth=100, for all action.
+    There is policy data of state: time=2, wealth=100, no all_Q data of pairs: time=2, wealth=100, for all action.
+    There is no policy data of state: time=4, wealth=100, there is all_Q data of pairs: time=4, wealth=100, action=30.
+    There is both policy data and all_Q data of state: time=6, wealth=100, action=50 or 80.
+  running policy_update functiion for this four situation,
+  The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
+2.test get_action function:
+3.test backup function:
+4.test episode function:
 '''
+#1:The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
+test = TD0()
+test.policy[100*11+2] = 25
+test.policy[100*11+6] = 75
+test.all_Q[100*1111+4*101+30] = 20
+test.all_Q[100*1111+6*101+80] = 30
+test.all_Q[100*1111+6*101+50] = 0
+test.policy_update(100*11+1)
+test.policy_update(100*11+2)
+test.policy_update(100*11+4)
+test.policy_update(100*11+6)
+print(test.policy)
+
+#2:
 
 
 
 
-
-
-
-
+####Integration Testing:
 '''
-Integration Testing: test the TD0 working well.
+test the TD0 working well.
 I use normal distribution of risky return to test the output policy.
 As referred in text book 'Fouundatoins of Reinforcement Learning with Applications in Finance', 
 the policy is independent to wealth:
