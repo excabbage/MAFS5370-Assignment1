@@ -55,14 +55,13 @@ print(test.hash_a())
 #12:result should be True,False,True repsectively
 print(test.is_end(4),test.is_end(10),test.is_end(0))
 
+
 '''
 Test environment
 1.test initial funcion: If print(test.a,test.b,test.p,test.r,test.T), result should be 0.06,0.04,0.6,0.05,10 repsectively
 2.test Y function: If run Y function 1000 timss and storage in the 'result' variable, 'reslut' shoulg consist of roughly 600 times of value 0.06, roughly 400 times of value 0.04. And there is no other value.
 3.test next_state function: If run next_state function 1000 times with imput parameter State_Action(4,250). The result should be 60% probability of State_Action(5,264), 40% probability of State_Action(5,261).
-
 '''
-
 #1:result should be 0.06,0.04,0.6,0.05,10 repsectively
 test = environment()
 print(test.a,test.b,test.p,test.r,test.T)
@@ -76,10 +75,10 @@ pd.value_counts(result)
 
 #3:The result should be 60% probability of State_Action(5,264)--hash value is 2909, hash_a value is 293859
 #40% probability of State_Action(5,261)--hahs value is 2876, hash_a value is 290526
-result_t = np.zeros(1000)
-result_wealth = np.zeros(1000)
-result_hash = np.zeros(1000)
-result_hash_a = np.zeros(1000)
+result_t = np.zeros(1000) #storage the result of time
+result_wealth = np.zeros(1000) #storage the result of wealth
+result_hash = np.zeros(1000) #storage the result of hash value
+result_hash_a = np.zeros(1000) #storage the result of hash_a value
 for i in range(0,1000):
   result = test.next_state(State_Action(4,250))
   result_t[i] = result.time
@@ -94,13 +93,21 @@ pd.value_counts(result_hash_a)
 
 ####Integration Testing
 '''
-
+Above two classes have only one interaction--next_state function in the environment class
+I will use State_Action(4,200,80) as a starting node1. Use next_state to generate new node2 from node1, and storage it in the same adress.
+Then set the action of node2 be 40, again use next_state to generate new node3 from node2.
+Ideally node2 should be 60% of State_Action(5,212), 40% of State_Action(5,208). 
+I focus on the node3, which should be 36% of State_Action(6,223), 24% of State_Action(6,222), 24% of State_Action(6,219), 16% of State_Action(6,218)
 '''
-test=State_Action(1,200)
-#Its value should be time=1, wealth=200, visited=0, value=0
-test.action = 20
-#Its value should be action=20
-test1 =play()
-test2 = test1.next_state(test)
-#test2 is a hash value, wich value should be 209002000 or 212002000.
-
+test2 =environment()
+result_t = np.zeros(1000) #storage the result of node3 time
+result_wealth = np.zeros(1000) #storage the result of node3 wealth
+for i in range(0,1000):
+  test1 = State_Action(4,200,80) #Starting node1
+  test1 = test2.next_state(test1) #get node2
+  test1.action = 40 #set node2 action be 40
+  result = test2.next_state(test1) #get node3
+  result_t[i] = result.time
+  result_wealth[i] = result.wealth
+pd.value_counts(result_t)
+pd.value_counts(result_wealth)
