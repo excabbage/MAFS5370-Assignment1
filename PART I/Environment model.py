@@ -88,12 +88,7 @@ class environment:
         if x <= self.p :
             return self.a
         else :
-            return self.b
-        
-    def Y_test(self) -> float :
-        #Y_test is normal distribution, used in the integral testing.
-        x = np.random.normal(0.06,1)
-        return x      
+            return self.b  
         
     def next_state(self, current_state_action:State_Action ) -> State_Action(int,int) :
         '''
@@ -114,7 +109,6 @@ class environment:
             
         #2.get the random result of the risky asset return
         risky = self.Y()
-        #risky = self.Y_test() #used in the integral testing
 
         #3.caculate the next wealth
         next_w = action/100 * (1+risky) * w + (100-action)/100 * (1+self.r) * w 
