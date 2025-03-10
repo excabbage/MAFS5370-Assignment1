@@ -23,7 +23,7 @@ class TD0:
         '''
         Given the input state_hash integer, the function use self.all_Q to update the greedy action in the self.policy
         '''
-        action = 50 #initialize greedy action is 50% of captial allocated into risky asset
+        action = self.policy.get( state_hash , 50) #If there is no exist policy, initialize greedy action is 50% of captial allocated into risky asset
         Qvalue = self.all_Q.get( state_hash*101 + action , 0)# initialize action value. If the state-action pairs haven't been visited, the Qvalue is 0.
         for action_tmp in range(0,101): #get the greedy action
             Qvalue_tmp = self.all_Q.get( state_hash*101 + action_tmp , 0) #If the state-action pairs haven't been visited, the Qvalue——tmp is 0.
