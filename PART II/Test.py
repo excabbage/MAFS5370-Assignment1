@@ -2,19 +2,21 @@
 '''
 Test TD0 class:
 1.test policy_update function: Because policy and all_Q storage the data dynamically, I test 4 situation. 
-    There is neither policy data nor all_Q data of state: time=1, wealth=100, for all action.
-    There is policy data of state: time=2, wealth=100, no all_Q data of pairs: time=2, wealth=100, for all action.
-    There is no policy data of state: time=4, wealth=100, there is all_Q data of pairs: time=4, wealth=100, action=30.
-    There is both policy data and all_Q data of state: time=6, wealth=100, action=50 or 80.
-  running policy_update functiion for this four situation,
+    There is neither policy data nor all_Q data of state: time=1, wealth=100, for all action. Result should be initial policy value=50
+    There is policy data of state: time=2, wealth=100, no all_Q data of pairs: time=2, wealth=100, for all action. Result should be exist policy value.
+    There is no policy data of state: time=4, wealth=100, there is all_Q data of pairs: time=4, wealth=100, action=30. Result should be 30 as I have only visited it.
+    There is both policy data and all_Q data of state: time=6, wealth=100, action=40 or 80. Result should be the aciton with highest Q value.
+  Running policy_update functiion on this four situation,
   The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
 2.test get_action function: Using the above test data, I test 2 situation: Whether there is policy data of input state.
     There is no policy data of state: time=10, wealth=100.
     There is policy data of state: time=6, wealth=100.
-  running get_action functiion for this two situation,
+  Running get_action functiion on this two situation, and epsilon = 0.5.
   The result of first situation should be 50.5% probability of 50, 0.5% probability of 0~100 except 50.
   The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
-3.test backup function:
+3.test backup function: Using the above test data,
+    If backup( 100*1111+4*101+30 , 100*1111+6*101+80 , 0 ), The value of all_Q[100*1111+4*101+30] will change from 20 into 29.7, which is 20 + 1*[0 + 0.99*30 - 20]
+    If backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ), The value of all_Q[100*1111+4*101+30] will change from 20 into 10, which is 20 + 1*[10 + 0.99*0 - 20]
 4.test episode function:
 '''
 #1:The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
@@ -23,7 +25,7 @@ test.policy[100*11+2] = 25
 test.policy[100*11+6] = 75
 test.all_Q[100*1111+4*101+30] = 20
 test.all_Q[100*1111+6*101+80] = 30
-test.all_Q[100*1111+6*101+50] = 0
+test.all_Q[100*1111+6*101+40] = 0
 test.policy_update(100*11+1)
 test.policy_update(100*11+2)
 test.policy_update(100*11+4)
@@ -40,6 +42,11 @@ for i in range(0,1000):
 plt.hist(result) #The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
 
 #3:
+test.backup( 100*1111+4*101+30 , 100*1111+6*101+80 , 0 ) # first situation
+print(test.all_Q[100*1111+4*101+30]) #result should be 29.7
+test.all_Q[100*1111+4*101+30] = 20 # reset
+test.backup( 100*1111+4*101+30 , 100*1111+6*101+40 , 10 ) # second situation
+print(test.all_Q[100*1111+4*101+30]) #result should be 10
 
 
 
