@@ -8,7 +8,12 @@ Test TD0 class:
     There is both policy data and all_Q data of state: time=6, wealth=100, action=50 or 80.
   running policy_update functiion for this four situation,
   The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
-2.test get_action function:
+2.test get_action function: Using the above test data, I test 2 situation: Whether there is policy data of input state.
+    There is no policy data of state: time=10, wealth=100.
+    There is policy data of state: time=6, wealth=100.
+  running get_action functiion for this two situation,
+  The result of first situation should be 50.5% probability of 50, 0.5% probability of 0~100 except 50.
+  The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
 3.test backup function:
 4.test episode function:
 '''
@@ -26,7 +31,15 @@ test.policy_update(100*11+6)
 print(test.policy)
 
 #2:
+result = np.zeros(1000)
+for i in range(0,1000): # run 1000 times to approximate the probability.
+  result[i] = test.get_action(100*11+10) # first situation
+plt.hist(result) #The result of first situation should be 50.5% probability of 50, 0.5% probability of 0~100 except 50.
+for i in range(0,1000):
+  result[i] = test.get_action(100*11+6) # second situation
+plt.hist(result) #The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
 
+#3:
 
 
 
