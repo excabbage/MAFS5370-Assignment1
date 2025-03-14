@@ -63,6 +63,8 @@ Obviously, there is an arbitrage opportunity, and thus optimal stratagy is 100% 
 I will set risky asset return Y= 0.08, prob= 0.6, and 0.06, prob= 0.4. Run the episode function until 1000000 times or until the summation of change of Q is less than 1e-5.
 '''
 test = TD0()
+test.player.a=0.08
+test.player.b=0.06
 for i in range(0,1000000):
     change = test.episode()
     if change < 1e-5 :
