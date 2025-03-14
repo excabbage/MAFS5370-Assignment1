@@ -1,20 +1,20 @@
 #### Unit Test
 '''
 Test State_Action:
-1.test initial funcion: If print(test.time,test.wealth,test.action), result should be 0,100,50 repsectively
+1.test initial function: If print(test.time,test.wealth,test.action), result should be 0,100,50 respectively
 2.test hash function: The hash value should be wealth * 11 + time = 1100
 3.test hash_a function: The hash_a value should be 1100 * 101 + action = 111150
-4.test is_end function: Test using Terminal time as 4,10,0 respectively, result should be False,False,True repsectively. Because the initial time value is 0
-5.change time and wealth value: Change the time=8, wealth=-40, action=10, If print(test.time,test.wealth,test.action), result should be 8,-40,10 repsectively
+4.test is_end function: Test using Terminal time as 4,10,0 respectively, result should be False,False,True respectively. Because the initial time value is 0
+5.change time and wealth value: Change the time=8, wealth=-40, action=10, If print(test.time,test.wealth,test.action), result should be 8,-40,10 v
 6.test hash function again: The hash value should be wealth * 11 + time = -432
 7.test hash_a function again: The hash_a value should be -432 * 101 + action = -43622
-8.test is_end function again: Test using Terminal time as 4,10,0 respectively, result should be True,False,True repsectively.
-9.test initial funcion with assign parameter: initial the parameter as time=4,wealth=25. If print(test.time,test.wealth,test.action), result should be 4,25,50 repsectively
+8.test is_end function again: Test using Terminal time as 4,10,0 respectively, result should be True,False,True respectively.
+9.test initial funcion with assign parameter: initial the parameter as time=4,wealth=25. If print(test.time,test.wealth,test.action), result should be 4,25,50 respectively
 10.test hash function again: The hash value should be wealth * 11 + time = 279
 11.test hash_a function again: The hash_a value should be 279 * 101 + action = 28229
-12.test is_end function again: Test using Terminal time as 4,10,0 respectively, result should be True,False,True repsectively.
+12.test is_end function again: Test using Terminal time as 4,10,0 respectively, result should be True,False,True v.
 '''
-#1:result should be 0,100,50 repsectively
+#1:result should be 0,100,50 respectively
 test = State_Action()
 print(test.time,test.wealth,test.action)
 
@@ -24,10 +24,10 @@ print(test.hash())
 #3:result should be 111150
 print(test.hash_a())
 
-#4:result should be False,False,True repsectively
+#4:result should be False,False,True respectively
 print(test.is_end(4),test.is_end(10),test.is_end(0))
 
-#5:result should be 8,-40,10 repsectively
+#5:result should be 8,-40,10 respectively
 test.time=8
 test.wealth=-40
 test.action=10
@@ -39,10 +39,10 @@ print(test.hash())
 #7:result should be -43622
 print(test.hash_a())
 
-#8:result should be True,False,True repsectively
+#8:result should be True,False,True respectively
 print(test.is_end(4),test.is_end(10),test.is_end(0))
 
-#9:result should be 4,25,50 repsectively
+#9:result should be 4,25,50 respectively
 test = State_Action(4,25)
 print(test.time,test.wealth,test.action)
 
@@ -52,7 +52,7 @@ print(test.hash())
 #11:result should be 28229
 print(test.hash_a())
 
-#12:result should be True,False,True repsectively
+#12:result should be True,False,True respectively
 print(test.is_end(4),test.is_end(10),test.is_end(0))
 
 
