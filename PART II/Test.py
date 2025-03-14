@@ -85,4 +85,5 @@ for n in range(0,10):
     plt.plot(w[n],a[n],label='policy at time %d' % n)
 plt.xlabel('wealth')
 plt.ylabel('action %')
+plt.ylim([0,101])
 plt.legend(loc=[1.05,0])
