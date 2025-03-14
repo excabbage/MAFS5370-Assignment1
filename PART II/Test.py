@@ -11,7 +11,7 @@ Test TD0 class:
 2.test get_action function: Using the above test data, I test 2 situation: Whether there is policy data of input state.
     There is no policy data of state: time=10, wealth=100.
     There is policy data of state: time=6, wealth=100.
-  Running get_action functiion on this two situation, and epsilon = 0.5.
+  Running get_action function on this two situation, and epsilon = 0.5.
   The result of first situation should be 50.5% probability of 50, 0.5% probability of 0~100 except 50.
   The result of second situation should be 50.5% probability of 80, 0.5% probability of 0~100 except 80.
 3.test backup function: Using the above test data,
