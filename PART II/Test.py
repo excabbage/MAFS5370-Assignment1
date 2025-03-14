@@ -79,7 +79,7 @@ for key in p:
     w[time]=np.append(w[time],(key-key%11)/11)    
 # view the result of policy
 for n in range(0,10):
-    plt.plot(w[n],a[n],'o',label='$policy\  at\  time\  %d$' % n)
+    plt.plot(w[n],a[n],'o',label='policy at time %d' % n)
 plt.xlabel('wealth')
 plt.ylabel('action %')
 plt.legend(loc=[1.05,0])
