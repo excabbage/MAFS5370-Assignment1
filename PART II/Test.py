@@ -5,8 +5,8 @@ Test TD0 class:
     There is neither policy data nor all_Q data of state: time=1, wealth=100, for all action. Result should be initial policy value=50
     There is policy data of state: time=2, wealth=100, no all_Q data of pairs: time=2, wealth=100, for all action. Result should be exist policy value.
     There is no policy data of state: time=4, wealth=100, there is all_Q data of pairs: time=4, wealth=100, action=30. Result should be 30 as I have only visited it.
-    There is both policy data and all_Q data of state: time=6, wealth=100, action=40 or 80. Result should be the aciton with highest Q value.
-  Running policy_update functiion on this four situation,
+    There is both policy data and all_Q data of state: time=6, wealth=100, action=40 or 80. Result should be the action with highest Q value.
+  Running policy_update function on this four situation,
   The results of print(test.policy) should be 1101:50, 1102:25, 1104:30, 1106:80
 2.test get_action function: Using the above test data, I test 2 situation: Whether there is policy data of input state.
     There is no policy data of state: time=10, wealth=100.
