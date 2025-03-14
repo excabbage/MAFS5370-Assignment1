@@ -73,22 +73,16 @@ for i in range(0,1000):
   result[i] = test.Y()
 pd.Series(result).value_counts()
 
-#3:The result should be 60% probability of State_Action(5,264)--hash value is 2909, hash_a value is 293859
-#40% probability of State_Action(5,261)--hahs value is 2876, hash_a value is 290526
+#3:The result should be 60% probability of State_Action(5,264), 40% probability of State_Action(5,261)
 result_t = np.zeros(1000) #storage the result of time
 result_wealth = np.zeros(1000) #storage the result of wealth
-result_hash = np.zeros(1000) #storage the result of hash value
-result_hash_a = np.zeros(1000) #storage the result of hash_a value
 for i in range(0,1000):
   result = test.next_state(State_Action(4,250))
   result_t[i] = result.time
   result_wealth[i] = result.wealth
-  result_hash[i] = result.hash()
-  result_hash_a[i] = result.hash_a()
 pd.Series(result_t).value_counts()
 pd.Series(result_wealth).value_counts()
-pd.Series(result_hash).value_counts()
-pd.Series(result_hash_a).value_counts()
+
 
 
 ####Integration Testing
