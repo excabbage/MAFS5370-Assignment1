@@ -103,5 +103,5 @@ for i in range(0,1000):
   result = test2.next_state(test1) #get node3
   result_t[i] = result.time
   result_wealth[i] = result.wealth
-pd.value_counts(result_t)
-pd.value_counts(result_wealth)
+pd.Series(result_t).value_counts()
+pd.Series(result_wealth).value_counts()
