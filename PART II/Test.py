@@ -76,10 +76,13 @@ w = [[],[],[],[],[],[],[],[],[],[]]
 for key in p:
     time = int(key%11)
     a[time]=np.append(a[time],p[key])
-    w[time]=np.append(w[time],(key-key%11)/11)    
+    w[time]=np.append(w[time],(key-key%11)/11)
+    #sort
+    a[time] = a[time][np.argsort(w[time])]
+    w[time] = np.sort(w[time])
 # view the result of policy
 for n in range(0,10):
-    plt.plot(w[n],a[n],'o',label='policy at time %d' % n)
+    plt.plot(w[n],a[n],label='policy at time %d' % n)
 plt.xlabel('wealth')
 plt.ylabel('action %')
 plt.legend(loc=[1.05,0])
