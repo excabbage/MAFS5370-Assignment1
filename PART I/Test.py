@@ -66,12 +66,12 @@ Test environment
 test = environment()
 print(test.a,test.b,test.p,test.r,test.T)
 
-#2:reslut shoulg consist of roughly 600 times of value 0.06, roughly 400 times of value 0.04. And there is no other value.
+#2:result should consist of roughly 600 times of value 0.06, roughly 400 times of value 0.04. And there is no other value.
 import pandas as pd
 result = np.zeros(1000)
 for i in range(0,1000):
   result[i] = test.Y()
-pd.value_counts(result)
+pd.Series(result).value_counts()
 
 #3:The result should be 60% probability of State_Action(5,264)--hash value is 2909, hash_a value is 293859
 #40% probability of State_Action(5,261)--hahs value is 2876, hash_a value is 290526
@@ -85,10 +85,10 @@ for i in range(0,1000):
   result_wealth[i] = result.wealth
   result_hash[i] = result.hash()
   result_hash_a[i] = result.hash_a()
-pd.value_counts(result_t)
-pd.value_counts(result_wealth)
-pd.value_counts(result_hash)
-pd.value_counts(result_hash_a)
+pd.Series(result_t).value_counts()
+pd.Series(result_wealth).value_counts()
+pd.Series(result_hash).value_counts()
+pd.Series(result_hash_a).value_counts()
 
 
 ####Integration Testing
