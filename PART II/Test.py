@@ -70,6 +70,13 @@ for i in range(0,1000000):
     change[i] = test.episode()
     if change[i] < 1e-5 :
         break
+test = TD0()
+test.player.a=0.08
+test.player.b=0.06
+for i in range(0,1000000):
+    change = test.episode()
+    if change < 1e-5 :
+        break
 a = [[],[],[],[],[],[],[],[],[],[]] #there are ten arrays respect to ten time periods
 w = [[],[],[],[],[],[],[],[],[],[]]
 for key in test.policy:
@@ -79,8 +86,6 @@ for key in test.policy:
     #sort
     a[time] = a[time][np.argsort(w[time])]
     w[time] = np.sort(w[time])
-# view the convergence of the Q value
-plt.plot(range(0,1000000),change)
 # view the result of policy
 for n in range(0,10):
     plt.plot(w[n],a[n],'o-',label='policy at time %d' % n)
