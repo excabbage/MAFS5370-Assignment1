@@ -65,21 +65,22 @@ I will set risky asset return Y= 0.08, prob= 0.6, and 0.06, prob= 0.4. Run the e
 test = TD0()
 test.player.a=0.08
 test.player.b=0.06
+change = np.zeros(1000000) #storage the change of Q value during the loop.
 for i in range(0,1000000):
-    change = test.episode()
-    if change < 1e-5 :
+    change[i] = test.episode()
+    if change[i] < 1e-5 :
         break
-#storage the policy
-p = test.policy
 a = [[],[],[],[],[],[],[],[],[],[]] #there are ten arrays respect to ten time periods
 w = [[],[],[],[],[],[],[],[],[],[]]
-for key in p:
+for key in test.policy:
     time = int(key%11)
-    a[time]=np.append(a[time],p[key])
+    a[time]=np.append(a[time],test.policy[key])
     w[time]=np.append(w[time],(key-key%11)/11)
     #sort
     a[time] = a[time][np.argsort(w[time])]
     w[time] = np.sort(w[time])
+# view the convergence of the Q value
+plt.plot(range(0,1000000),change)
 # view the result of policy
 for n in range(0,10):
     plt.plot(w[n],a[n],'o-',label='policy at time %d' % n)
